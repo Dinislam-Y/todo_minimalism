@@ -1,7 +1,11 @@
-import 'package:exemple_provider/main_screen.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:provider/provider.dart';
 
+// Project imports:
+import 'package:exemple_provider/main_screen.dart';
 import 'provider/todo_model.dart';
 
 void main() => runApp(const MyApp());

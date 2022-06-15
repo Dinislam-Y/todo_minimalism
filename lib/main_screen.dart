@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:provider/provider.dart';
 
+// Project imports:
 import 'provider/todo_model.dart';
+import 'widget/showDataTime.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -52,21 +57,8 @@ class _ShowClock extends StatelessWidget {
       child: Column(
         children: const [
           SizedBox(height: 20),
-          Text(
-            "02 : 36 PM",
-            style: TextStyle(
-                color: Colors.white70,
-                fontSize: 45,
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "current time",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-          SizedBox(height: 20)
+          Clock(),
+          SizedBox(height: 20),
         ],
       ),
     );
