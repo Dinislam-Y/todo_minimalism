@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'provider/todo_model.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -8,12 +11,10 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey,
-        onPressed: () {},
-        child: const Icon(
-          Icons.add,
-          size: 6,
-          color: Colors.black,
-        ),
+        onPressed: () {
+          Provider.of<TodoModel>(context, listen: false).addTaskInList();
+        },
+        child: const Icon(Icons.touch_app_sharp, color: Colors.black45),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Colors.blueGrey,
@@ -77,6 +78,7 @@ class _ShowAddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myValue = Provider.of<TodoModel>(context);
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
@@ -92,28 +94,31 @@ class _ShowAddTask extends StatelessWidget {
             ),
           ],
         ),
-        child: ListView.builder(itemBuilder: (context, index) {
-          return const ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-            title: Text(
-              '1231312131',
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(
-              'qwfqwfwwf',
-              style: TextStyle(
-                color: Colors.black87,
-              ),
-            ),
-            trailing: Icon(
-              Icons.check_circle,
-              color: Colors.blueGrey,
-            ),
-          );
-        }),
+        child: ListView.builder(
+            itemCount: myValue.taskList.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+                title: Text(
+                  myValue.taskList[index].title,
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  myValue.taskList[index].detail,
+                  style: const TextStyle(
+                    color: Colors.black87,
+                  ),
+                ),
+                trailing: const Icon(
+                  Icons.check_circle,
+                  color: Colors.blueGrey,
+                ),
+              );
+            }),
       ),
     );
   }

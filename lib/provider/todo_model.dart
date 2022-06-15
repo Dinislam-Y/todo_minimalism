@@ -5,10 +5,9 @@ class TodoModel extends ChangeNotifier {
   List<TaskModel> taskList = [];
 
   addTaskInList() {
-    TaskModel taskModel = TaskModel('', '');
+    TaskModel taskModel = TaskModel(
+        'Задача ${taskList.length}', 'Описание задачи ${taskList.length}');
     taskList.add(taskModel);
+    notifyListeners();
   }
-
-  @override
-  void notifyListeners() {}
 }
